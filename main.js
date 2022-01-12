@@ -47,10 +47,35 @@ document.addEventListener('scroll', () =>{
         arrowUp.classList.remove('visible');
     }
 })
+// Handle click on the "arrow up" button
 arrowUp.addEventListener('click', () => {
     scrollIntoView('#home');
 })
 
+//Projects
+const workBtnContainer = document.querySelector('.work__categories');
+const arrProjects = document.querySelectorAll('.project');
+//work__projects는 애니메이션 쓸 때 쓰는건가? ㅇㅇ
+const projectContainer = document.querySelector('.work__projects');
+workBtnContainer.addEventListener('click', (event) => {
+    const target = event.target;
+    const category = target.dataset.category || target.parentNode.dataset.category;
+    if(category == null){
+        return;
+    }
+    projectContainer.classList.add('anim-out');
+    setTimeout(() => {
+        arrProjects.forEach(project => {
+            if(category === '*' || category === project.dataset.type){
+                project.classList.remove('invisible');
+            }
+            else {
+                project.classList.add('invisible');
+            }
+        })
+        projectContainer.classList.remove('anim-out');
+    }, 300)
+})
 
 function scrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
