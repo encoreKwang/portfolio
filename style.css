@@ -429,6 +429,30 @@ p {
   color: var(--color-pink);
 }
 
+/* arrow up button */
+.arrow-up {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 70px;
+  height: 70px;
+  font-size: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  /* display: none으로 가리면 애니메이션 안됨. */
+  /* opacity: 0으로 하면 애니메이션은 되는데 안보여도 클릭이 됨 */
+  /* 따라서 pointer-event: none으로 안눌리게 해야함. */
+  pointer-events: none;
+  transition: all var(--animation-duration) ease-in;
+}
+.arrow-up.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* for below 768px screen width */
 @media screen and (max-width: 768px) {
   .navbar__toggle-btn {
