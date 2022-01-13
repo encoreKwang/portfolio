@@ -55,14 +55,22 @@ arrowUp.addEventListener('click', () => {
 //Projects
 const workBtnContainer = document.querySelector('.work__categories');
 const arrProjects = document.querySelectorAll('.project');
-//work__projects는 애니메이션 쓸 때 쓰는건가? ㅇㅇ
 const projectContainer = document.querySelector('.work__projects');
 workBtnContainer.addEventListener('click', (event) => {
-    const target = event.target;
-    const category = target.dataset.category || target.parentNode.dataset.category;
+    const category = event.target.dataset.category || event.target.parentNode.dataset.category;
+    
     if(category == null){
         return;
     }
+
+    //Remove selection from the previous item and select the new one
+    const active = document.querySelector('.category__btn.selected');
+    active.classList.remove('selected');
+    const newSelectedBtn
+      = event.target.nodeName === 'BUTTON' ? event.target : event.target.parentNode;
+    newSelectedBtn.classList.add('selected');
+
+
     projectContainer.classList.add('anim-out');
     setTimeout(() => {
         arrProjects.forEach(project => {
@@ -75,6 +83,7 @@ workBtnContainer.addEventListener('click', (event) => {
         })
         projectContainer.classList.remove('anim-out');
     }, 300)
+    
 })
 
 function scrollIntoView(selector){
