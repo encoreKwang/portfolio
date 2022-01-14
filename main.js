@@ -95,10 +95,8 @@ workBtnContainer.addEventListener('click', (event) => {
     
 })
 
-
-
 function scrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior: "smooth", block: "center"});
+    scrollTo.scrollIntoView({behavior: "smooth"});
 }
 
