@@ -24,7 +24,6 @@ navbarMenu.addEventListener('click' ,(event) => {
     }
     navbarMenu.classList.remove('open');
     scrollIntoView(link);
-    selectNavItem(target);
 })
 
 //navbar toggle button for small screen
@@ -96,10 +95,6 @@ workBtnContainer.addEventListener('click', (event) => {
     
 })
 
-function scrollIntoView(selector){
-    const scrollTo = document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior: "smooth"});
-}
 
 //1. 모든 섹션 요소들과 메뉴아이탐들을 가지고 온다
 //2. IntersectionObserver를 이용해서 모든 섹션들을 관찰한다
@@ -114,7 +109,6 @@ const sectionIds = [
     '#contact',
 ];
 const sections = sectionIds.map((id) => document.querySelector(id));
-
 const navItems = sectionIds.map((id) =>
     document.querySelector(`[data-link="${id}"]`)
 );
@@ -125,6 +119,11 @@ function selectNavItem(selected) {
     selectedNavItem.classList.remove('active');
     selectedNavItem = selected;
     selectedNavItem.classList.add('active');
+}
+function scrollIntoView(selector){
+    const scrollTo = document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior: "smooth"});
+    selectNavItem(navItems[sectionIds.indexOf(selector)]);
 }
 
 
